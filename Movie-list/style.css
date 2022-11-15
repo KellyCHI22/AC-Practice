@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(27, 24, 19, 1);
+}
+
+img {
+    width: 100%;
+}
+
+.wrapper {
+    max-width: 1500px;
+    padding: 0 2em;
+}
+
+/* * navbar */
+
+.navbar {
+    width: 100%;
+    background-color: rgba(27, 24, 19, 1);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, .8);
+    font-weight: 600;
+    letter-spacing: .2ch;
+}
+
+.nav-link:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-brand a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.search-form {
+    position: relative;
+}
+
+.search-input {
+    width: 200px;
+    padding-left: 40px;
+    border: none;
+    border-radius: 2em;
+    background-color: hsl(38, 17%, 40%);
+    color: white;
+    opacity: .75;
+}
+
+.search-submit-button {
+    position: absolute;
+    top: 0;
+    left: 3px;
+    border: none;
+    background-color: transparent;
+}
+
+.search-submit-button:hover,
+.search-submit-button:focus {
+    background-color: transparent;
+}
+
+.carousel {
+    width: 100vw;
+    max-width: 100%;
+}
+
+/* * main */
+
+.popular {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.display-btn {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: none;
+    text-align: center;
+    background-color: transparent;
+    color: white;
+}
+
+.display-btn:hover,
+.display-btn.active {
+    background-color: hsl(33, 100%, 57%);
+    color: black;
+}
+
+.movie-options {
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.card-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0 0 0 /.8);
+    opacity: 0;
+    transition: all 200ms ease-in;
+}
+
+.card:hover>.card-body {
+    opacity: 1;
+}
+
+.card:focus>.card-body {
+    transform: translateY(100%);
+}
+
+.card-body:has(.btn:focus) {
+    display: none;
+}
+
+.movie-list {
+    color: white;
+}
+
+.btn-show-movie {
+    border: 1px solid rgba(255 255 255/ .5);
+    background-color: transparent;
+}
+
+.btn-show-movie:hover {
+    border: 1px solid rgba(255 255 255/ .25);
+    background-color: rgba(255 255 255/ .25);
+}
+
+.btn-show-movie:focus {
+    border: 1px solid rgba(255 255 255/ .5);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.btn-add-favorite {
+    border: 1px solid rgba(255 255 255/ .5);
+    background-color: transparent;
+}
+
+.btn-add-favorite:hover {
+    border: 1px solid rgba(255 255 255/ .25);
+    background-color: rgba(255 255 255/ .25);
+}
+
+.btn-add-favorite:focus {
+    border: 1px solid rgba(255 255 255/ .25);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.heart-empty {
+    color: white;
+}
+
+.heart-full {
+    color: hsl(33, 100%, 57%);
+}
+
+
+/* * paginator */
+.page-link {
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    color: rgba(255, 255, 255, .8);
+}
+
+.page-link:hover {
+    background-color: hsl(38, 17%, 20%);
+    color: rgba(255, 255, 255, .8);
+}
+
+.page-link:focus {
+    box-shadow: none;
+}
+
+.page-item.active .page-link {
+    border: none;
+    background-color: hsl(38, 17%, 20%);
+    color: rgba(255, 255, 255, .8);
+}
+
+
+.modal-content {
+    border: 1px solid white;
+    border-radius: 1em;
+    background-color: rgba(0 0 0 / .8);
+    color: white;
+}
+
+.btn-close-modal {
+    border: none;
+    color: hsl(33, 100%, 57%);
+    font-size: 2rem;
+    background-color: transparent;
+}
+
+.btn-close-modal:hover {
+    color: hsl(33, 100%, 40%);
+}
