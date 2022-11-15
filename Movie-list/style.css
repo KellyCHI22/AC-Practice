@@ -73,6 +73,8 @@ img {
     background-color: transparent;
 }
 
+/* * carousel */
+
 .carousel {
     width: 100vw;
     max-width: 100%;
@@ -104,6 +106,8 @@ img {
 .movie-options {
     border-bottom: 1px solid rgba(255, 255, 255, .5);
 }
+
+/* * movie card and list */
 
 .card {
     position: relative;
@@ -200,6 +204,7 @@ img {
     color: rgba(255, 255, 255, .8);
 }
 
+/* * modal */
 
 .modal-content {
     border: 1px solid white;
