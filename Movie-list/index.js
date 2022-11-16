@@ -4,7 +4,6 @@ const INDEX_URL = BASE_URL + '/api/v1/movies/';
 const POSTER_URL = BASE_URL + '/posters/';
 
 const movies = [];
-const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
 const MOVIES_PER_PAGE = 12;
 let filteredMovies = [];
 
@@ -28,7 +27,7 @@ function renderMovieCard(data) {
             <div class="mb-2">
                 <div class="card">
                     <img src="${POSTER_URL + item.image
-            }" class="card-img-top" alt="Movie Poster">
+            }" class="card-img-top movie-poster" alt="Movie Poster" data-bs-toggle="modal" data-bs-target="#movie-modal" data-id="${item.id}">
                     <div class="card-body">
                         <h5 class="card-title">${item.title}</h5>
                         <button class="btn btn-primary btn-show-movie" data-bs-toggle="modal" data-bs-target="#movie-modal" data-id="${item.id}">More</button>
@@ -47,7 +46,7 @@ function renderMovieList(data) {
     data.forEach((item) => {
         rawHTML += `
         <li class="movie-list d-flex justify-content-between mt-2 pt-2 border-top border-secondary">
-            <span class="movie-list-title">${item.title}</span>
+            <span class="movie-list-title" data-bs-toggle="modal" data-bs-target="#movie-modal" data-id="${item.id}">${item.title}</span>
             <div>
             <button class="btn btn-primary btn-show-movie" data-bs-toggle="modal" data-bs-target="#movie-modal" data-id="${item.id}">More</button>
             <button class="btn btn-info btn-add-favorite" data-id="${item.id}"><i class="fa-regular fa-heart heart-empty"></i></button>
@@ -59,7 +58,9 @@ function renderMovieList(data) {
     dataPanel.innerHTML = rawHTML;
 }
 
+// * 針對已加入 favorite 的電影愛心做標記
 function renderFavMovies() {
+    let favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
     const favoriteBtns = document.querySelectorAll('.btn-add-favorite');
     favoriteBtns.forEach(favoriteBtn => {
         if (favoriteMovies.some((movie) => movie.id === Number(favoriteBtn.dataset.id))) {
@@ -88,7 +89,6 @@ function getMoviesByPage(page) {
 
 // * 點擊 paginator 會顯示指定頁數
 function showCertainPage(event) {
-    //如果被點擊的不是 a 標籤，結束
     if (event.target.tagName !== 'A') return;
     currentPage = Number(event.target.dataset.page);
 
@@ -113,7 +113,6 @@ function setActivePage() {
 
 // * 顯示電影 modal
 function showMovieModal(id) {
-    // get elements
     const modalTitle = document.querySelector('#movie-modal-title');
     const modalImage = document.querySelector('#movie-modal-image');
     const modalDate = document.querySelector('#movie-modal-date');
@@ -167,21 +166,21 @@ function searchKeyword(event) {
 
 // * 加入 favorite 清單
 function addToFavorite(id) {
-    const list = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
+    let favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
     const movie = movies.find((movie) => movie.id === id);
-    if (list.some((movie) => movie.id === id)) {
+    if (favoriteMovies.some((movie) => movie.id === id)) {
         return alert('This movie is already in your favorites!');
     }
-    list.push(movie);
-    localStorage.setItem('favoriteMovies', JSON.stringify(list));
+    favoriteMovies.push(movie);
+    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
 }
 
 // * 將 movie 從 favorite 中移除
 function removeFromFavorite(id) {
+    let favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
     if (!favoriteMovies || !favoriteMovies.length) return;
 
     const movieIndex = favoriteMovies.findIndex((movie) => movie.id === id);
-
     if (movieIndex === -1) return;
 
     favoriteMovies.splice(movieIndex, 1);
@@ -189,15 +188,14 @@ function removeFromFavorite(id) {
 }
 
 // * 顯示 modal 或是加入 favorite 清單
-// ! 小 bug: 連續點擊同一個愛心三次 (加入收藏、移除蒐藏、再加入搜藏)，會出現"這部電影已在收藏清單中"的 alert，但當我點擊完第二次 (移除蒐藏)，去 favorite 頁面中查看時，電影是確實有被移除的! 不知道為什麼...QQ (不過，若點擊太快時，移除蒐藏功能也無法正常運作)
 function showOrAddFavorite(event) {
     const target = event.target;
-    if (target.matches('.btn-show-movie')) {
+    if (target.matches('.btn-show-movie') || target.matches('.movie-poster') || target.matches('.movie-list-title')) {
         showMovieModal(Number(target.dataset.id));
     } else if (target.matches('.heart-empty')) {
+        addToFavorite(Number(target.parentElement.dataset.id));
         target.classList.remove('heart-empty', 'fa-regular');
         target.classList.add('heart-full', 'fa-solid');
-        addToFavorite(Number(target.parentElement.dataset.id));
     } else if (target.matches('.heart-full')) {
         removeFromFavorite(Number(target.parentElement.dataset.id));
         target.classList.add('heart-empty', 'fa-regular');
