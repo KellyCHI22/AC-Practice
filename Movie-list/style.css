@@ -3,7 +3,7 @@
 body {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    width: 100vw;
     align-items: center;
     font-family: 'Poppins', sans-serif;
     background-color: rgba(27, 24, 19, 1);
@@ -15,7 +15,6 @@ img {
 
 .wrapper {
     max-width: 1500px;
-    padding: 0 2em;
 }
 
 /* * navbar */
@@ -53,6 +52,7 @@ img {
 .search-input {
     width: 200px;
     padding-left: 40px;
+    margin-right: 1rem;
     border: none;
     border-radius: 2em;
     background-color: hsl(38, 17%, 40%);
