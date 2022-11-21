@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User list</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/e4b9cb38f0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navbar starts -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"> <i class="fa-solid fa-user"></i> User List</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link active href=" index.html">
+                            <i class="fa-solid fa-house"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="favorite.html">
+                            <i class="fa-solid fa-heart"></i> Favorite
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar ends-->
+
+    <div class="container mt-5">
+        <!-- Search Bar starts -->
+        <div class="row">
+            <form class="row row-cols-lg-auto align-items-center" id="search-form">
+                <div class="col-12 col-md-6">
+                    <label class="visually-hidden" for="search-input">
+                        Search Keyword
+                    </label>
+                    <input type="text" class="form-control" id="search-input" placeholder="Type something..." />
+                </div>
+                <div class="col-12 col-md-3">
+                    <button type="submit" class="btn btn-primary" id="search-submit-button">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-info select-male">Male <i class="fa-solid fa-mars"></i></button>
+                    <button class="btn btn-danger select-female">Female <i class="fa-solid fa-venus"></i></button>
+                </div>
+                <div class="search-message"></div>
+            </form>
+        </div>
+        <!-- Search Bar ends -->
+        <!-- Data panel -->
+        <div class="row" id="data-panel">
+            <!-- Render User List -->
+        </div>
+        <!-- Data panel -->
+    </div>
+
+    <!-- paginator starts -->
+    <nav aria-label="Page navigation" class="">
+        <ul class="pagination justify-content-center" id="paginator">
+            <!-- render paginator -->
+        </ul>
+    </nav>
+    <!-- paginator ends -->
+
+    <!-- User Modal -->
+    <div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="user-modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="" alt="user-avatar" id="user-modal-image" class="user-avatar img-fluid">
+                        </div>
+                        <div class="col-sm-8" id="user-modal-content">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- User Modal ends -->
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
